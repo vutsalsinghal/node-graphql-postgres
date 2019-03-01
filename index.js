@@ -20,11 +20,14 @@ app.get("/", function (req, res) {
   });
 });
 
-app.get("/user/:uid/calorie-intake/", function (req, res) {
-  console.log(req);
-  knex.select().table("calorie-intake").where("user_id", req.params.uid).then((data, err) => {
-    res.send(data)
-  });
+app.get("/user/:uid/calorie-intake/", async (req, res) => {
+  const data = await knex.select("id", "intake").table("calorie-intake").where("user_id", req.params.uid)
+  res.send(data);
+});
+
+app.get("/user/:uid/calorie-intake/add/:amount", async (req, res) => {
+  let data = await knex("calorie-intake").where("user_id", '=', req.params.uid).update({ intake: req.params.amount }, ["id", "intake"])
+  res.send(data);
 });
 
 app.listen(process.env.PORT);
