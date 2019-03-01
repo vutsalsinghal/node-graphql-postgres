@@ -1,20 +1,21 @@
 // Update with your config settings.
+require('dotenv').config()
 
 module.exports = {
 
   development: {
     client: 'pg',
     connection: {
-      host: "localhost",
-      database: "fluzDB",
-      user: "postgres",
-      password: "postgres"
+      host: process.env.DB_HOST || "localhost",
+      database: process.env.DB,
+      user: process.env.DB_USER,
+      password: process.envDB_PASSWORD
     },
     migrations: {
-      directory: __dirname + "/migrations",
+      directory: __dirname + "/db/migrations",
     },
     seeds: {
-      directory: __dirname + "/seeds",
+      directory: __dirname + "/db/seeds",
     }
   },
 
@@ -49,5 +50,4 @@ module.exports = {
       tableName: 'knex_migrations'
     }
   }
-
 };
