@@ -6,4 +6,3 @@
 *.fuse*
 
 node_modules
-db/migrations
