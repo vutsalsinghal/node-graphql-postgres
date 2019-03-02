@@ -1,8 +1,9 @@
-node_modules
 .env
-
+.vscode
 *.pdf
 *.log
-db/migrations
+*.txt
+*.fuse*
 
-.vscode
+node_modules
+db/migrations
